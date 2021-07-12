@@ -1,0 +1,73 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+	<meta charset="utf-8"/>
+	<title>player</title>
+	<style type="text/css">
+
+	</style>
+
+	<script type="text/javascript">
+		function getRandom( min, max ) {
+			return Math.floor( Math.random() * ( max - min + 1 ) ) + min ;
+		} // getRandom() 
+
+		function Player() {
+			this.name = {name};
+			this.hp = getRandom(50,100);
+			this.attack = getRandom( 1, 10 ) ;
+			this.defence = getRandom( 1 , 5 ) ;
+			this.r_d = 0;
+			this.fight = function() {
+				var original_hp = this.hp ;
+				var damage = getRandom( 1, 15 ) ;
+				if ( damage >= this.defence ) {
+					this.hp = this.hp - damage + this.defence ;
+					this.r_d = damage - this.defence ;
+				} // if 
+				else
+					this.r_d = 0 ;
+				var div = document.createElement("div") ;
+				div.id = "myDIv" ;
+				div.innerHTML = "Original Hp:" + original_hp + " Damager receive: " + this.r_d  + " Current Hp:" + this.hp ;
+				document.body.appendChild(div) ;
+				if ( this.hp < 0 )
+					alert( "You're dead" ) ;
+				
+			} // fight
+			this.rest = function() {
+				var heal = getRandom( 1, 5 ) ;
+				var original_hp = this.hp ;
+				this.hp = this.hp + heal ;
+				alert( "Original Hp:" + original_hp + "\n" + "heal:" + heal + "\n" +     "Current Hp:" + this.hp ) ;
+			} // rest
+
+		} // Player 
+		function refresh() {
+			var x = player.hp ;
+			var y = player.r_d ;
+			document.getElementById("b_hp").innerHTML = x ;
+			document.getElementById("r_d").innerHTML = y ;
+		} // refresh
+
+		var player = new Player() ; 
+		document.write( "Name: " + player.name + "<br>") ;
+		document.write("your hp: " + player.hp + "<br>" );
+		document.write("your attack: " + player.attack + "<br>" ) ;
+		document.write("your defence: " + player.defence + "<br>" ) ;
+		
+	</script>
+</head>
+<body>
+	<p id = "name">  </p>
+	Username : {name}
+	<button onclick="player.fight();"> Battle </button>
+	<button onclick="refresh();" > Refresh </button>
+	<button onclick="player.rest();">Rest</button>
+	<div> 
+		Current hp <span id ="b_hp"> 0 </span> <br>
+		Receive damage <span id="r_d"> 0 </span>
+	</div>
+</body>
+
+</html>

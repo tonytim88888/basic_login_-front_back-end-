@@ -1,0 +1,57 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title> login </title>
+		<style type="text/css">
+			.box{
+				background-image: url('ak.jpeg');
+				background-position:center;
+				background-repeat:no-repeat;
+				min-height: 100%;
+			}
+			.userio{
+
+				text-align: center;
+				font-size: 60px;
+			}
+			
+
+		</style>
+	</head>
+
+	<body>
+		<form action="/game" method="post">
+			
+			<div class="box">
+
+				<div class="userio">
+
+				Welcome Poker Star <br/>
+				<font size ="5"> 
+				Username: <input type="text" id="un" name="username"><br/>
+                Password: <input type="password" id="pw" name="password"><br/>
+            	</font>
+				<input type="submit" value="login" accesskey="enter"/>
+				<input type="button" value="register" onClick="self.location.href='/sign'"/>
+				</div>
+			</div>
+		</form>
+		 <script>
+            if (window.location.search == '?ls=failed') {
+                let err_msg = document.createElement('p');
+                err_msg.style.color = 'red';
+                err_msg.textContent = 'Wrong username/password';
+                let body = document.getElementsByTagName('div')[1]
+                body.appendChild(err_msg);
+            }
+            if (window.location.search == '?reg=Suc') {
+                let suc_msg = document.createElement('p');
+                suc_msg.style.color = 'green';
+                suc_msg.textContent = 'User has been Registed Successfully.';
+                let body = document.getElementsByTagName('div')[1]
+                body.appendChild(suc_msg);
+            }
+        </script>
+	</body>
+</html>
